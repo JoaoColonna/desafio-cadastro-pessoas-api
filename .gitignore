@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/RegisterAPI/bin/Debug/net9.0
+/RegisterAPI.Application/bin/Debug/net9.0
+/RegisterAPI.Domain/bin/Debug/net9.0
+/RegisterAPI.Infrasctructure/bin/Debug/net9.0
