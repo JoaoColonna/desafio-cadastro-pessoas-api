@@ -7,6 +7,7 @@ on:
 
 jobs:
   test-and-deploy:
+    environment: ${{ inputs.environment }}
     runs-on: ubuntu-latest
     
     steps:
@@ -50,7 +51,8 @@ jobs:
         cat docs/coverage/Summary.txt
         echo ""
         echo "🌐 Coverage report will be available at: https://joaocolonna.github.io/desafio-cadastro-pessoas-api/coverage/"
-
+        echo "🎯 Goal: Maintain coverage above 80% when possible."
+        
     - name: Upload coverage reports
       uses: actions/upload-artifact@v4
       with:
@@ -65,18 +67,14 @@ jobs:
         publish_dir: ./docs/coverage
         destination_dir: coverage
 
-    # --- DEPLOY OFICIAL HEROKU ---
     - name: Install Heroku CLI
-      run: curl https://cli-assets.heroku.com/install.sh | sh
-
-    - name: Add Heroku git remote
-      run: heroku git:remote -a register-people-api
-      env:
-        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      run: |
+        curl https://cli-assets.heroku.com/install.sh | sh
 
     - name: Deploy to Heroku
-      env:
-        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: |
-        git remote set-url heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/register-people-api.git
-        git push heroku main:main
+      uses: akhileshns/heroku-deploy@v3.14.15
+      with:
+        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+        heroku_app_name: "register-people-api"
+        heroku_email: ${{ secrets.HEROKU_EMAIL }}
+        usedocker: false
