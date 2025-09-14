@@ -147,15 +147,20 @@ catch (Exception ex)
     throw;
 }
 
-// Configure the HTTP request pipeline.
+// Configure the HTTP request pipeline - Swagger habilitado também em produção
+app.MapOpenApi();
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "RegisterAPI v1");
+    c.RoutePrefix = "swagger"; // Swagger disponível em /swagger
+});
+
+// HTTPS Redirect apenas em desenvolvimento (Heroku já gerencia HTTPS)
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseHttpsRedirection();
 }
-
-app.UseHttpsRedirection();
 
 // Importante: A ordem importa!
 app.UseAuthentication(); // Deve vir antes de UseAuthorization
