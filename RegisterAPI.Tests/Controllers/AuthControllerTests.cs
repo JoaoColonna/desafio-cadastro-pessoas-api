@@ -1,4 +1,4 @@
-using FluentAssertions;
+ï»¿using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using RegisterAPI.Application.DTOs;
@@ -85,7 +85,7 @@ namespace RegisterAPI.Tests.Controllers
         {
             // Arrange
             var loginDto = new LoginDto { Username = "", Password = "" };
-            _controller.ModelState.AddModelError("Username", "Username é obrigatório");
+            _controller.ModelState.AddModelError("Username", "Username Ã© obrigatÃ³rio");
 
             // Act
             var result = await _controller.Login(loginDto);
@@ -143,7 +143,7 @@ namespace RegisterAPI.Tests.Controllers
         {
             // Arrange
             var registerDto = new RegisterDto { Username = "", Email = "", Password = "" };
-            _controller.ModelState.AddModelError("Username", "Username é obrigatório");
+            _controller.ModelState.AddModelError("Username", "Username Ã© obrigatÃ³rio");
 
             // Act
             var result = await _controller.Register(registerDto);

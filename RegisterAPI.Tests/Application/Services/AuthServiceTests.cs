@@ -1,4 +1,4 @@
-using FluentAssertions;
+Ôªøusing FluentAssertions;
 using Moq;
 using RegisterAPI.Application.DTOs;
 using RegisterAPI.Application.Interfaces;
@@ -69,7 +69,7 @@ namespace RegisterAPI.Tests.Application.Services
             // Act & Assert
             await _authService.Invoking(x => x.LoginAsync(loginDto))
                 .Should().ThrowAsync<UnauthorizedAccessException>()
-                .WithMessage("Username ou password inv·lidos.");
+                .WithMessage("Username ou password inv√°lidos.");
         }
 
         [Fact]
@@ -98,7 +98,7 @@ namespace RegisterAPI.Tests.Application.Services
             // Act & Assert
             await _authService.Invoking(x => x.LoginAsync(loginDto))
                 .Should().ThrowAsync<UnauthorizedAccessException>()
-                .WithMessage("Username ou password inv·lidos.");
+                .WithMessage("Username ou password inv√°lidos.");
         }
 
         [Fact]
@@ -156,7 +156,7 @@ namespace RegisterAPI.Tests.Application.Services
             // Act & Assert
             await _authService.Invoking(x => x.RegisterAsync(registerDto))
                 .Should().ThrowAsync<InvalidOperationException>()
-                .WithMessage("Username j· est· em uso.");
+                .WithMessage("Username j√° est√° em uso.");
         }
 
         [Fact]
@@ -178,7 +178,7 @@ namespace RegisterAPI.Tests.Application.Services
             // Act & Assert
             await _authService.Invoking(x => x.RegisterAsync(registerDto))
                 .Should().ThrowAsync<InvalidOperationException>()
-                .WithMessage("Email j· est· em uso.");
+                .WithMessage("Email j√° est√° em uso.");
         }
 
         [Fact]

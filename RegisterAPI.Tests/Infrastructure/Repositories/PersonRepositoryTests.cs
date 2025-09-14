@@ -1,4 +1,4 @@
-using FluentAssertions;
+Ôªøusing FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using RegisterAPI.Domain.Entities;
 using RegisterAPI.Infrasctructure.Database;
@@ -28,12 +28,12 @@ namespace RegisterAPI.Tests.Infrastructure.Repositories
             // Arrange
             var pessoa = new Pessoa
             {
-                Nome = "Jo„o Silva",
+                Nome = "Jo√£o Silva",
                 Cpf = "209.941.790-30",
                 Email = "joao@example.com",
                 DataNascimento = DateTime.Now.AddYears(-30),
                 Sexo = "M",
-                Naturalidade = "S„o Paulo",
+                Naturalidade = "S√£o Paulo",
                 Nacionalidade = "Brasileira"
             };
 
@@ -92,7 +92,7 @@ namespace RegisterAPI.Tests.Infrastructure.Repositories
             // Arrange
             var originalPessoa = new Pessoa
             {
-                Nome = "Jo„o Silva",
+                Nome = "Jo√£o Silva",
                 Cpf = "209.941.790-30",
                 Email = "joao@example.com",
                 DataNascimento = DateTime.Now.AddYears(-30),
@@ -105,7 +105,7 @@ namespace RegisterAPI.Tests.Infrastructure.Repositories
 
             var updatedData = new Pessoa
             {
-                Nome = "Jo„o Silva Atualizado",
+                Nome = "Jo√£o Silva Atualizado",
                 Cpf = "209.941.790-30",
                 Email = "joao.updated@example.com",
                 DataNascimento = originalPessoa.DataNascimento,
@@ -129,7 +129,7 @@ namespace RegisterAPI.Tests.Infrastructure.Repositories
             // Arrange
             var pessoa = new Pessoa
             {
-                Nome = "Jo„o para Deletar",
+                Nome = "Jo√£o para Deletar",
                 Cpf = "11111111111",
                 DataNascimento = DateTime.Now.AddYears(-30),
                 DataCadastro = DateTime.UtcNow,
@@ -154,7 +154,7 @@ namespace RegisterAPI.Tests.Infrastructure.Repositories
             // Arrange
             var pessoas = new[]
             {
-                new Pessoa { Nome = "Jo„o", Cpf = "11111111111", DataNascimento = DateTime.Now.AddYears(-30), DataCadastro = DateTime.UtcNow, DataAtualizacao = DateTime.UtcNow },
+                new Pessoa { Nome = "Jo√£o", Cpf = "11111111111", DataNascimento = DateTime.Now.AddYears(-30), DataCadastro = DateTime.UtcNow, DataAtualizacao = DateTime.UtcNow },
                 new Pessoa { Nome = "Maria", Cpf = "22222222222", DataNascimento = DateTime.Now.AddYears(-25), DataCadastro = DateTime.UtcNow, DataAtualizacao = DateTime.UtcNow },
                 new Pessoa { Nome = "Pedro", Cpf = "33333333333", DataNascimento = DateTime.Now.AddYears(-40), DataCadastro = DateTime.UtcNow, DataAtualizacao = DateTime.UtcNow }
             };
@@ -167,7 +167,7 @@ namespace RegisterAPI.Tests.Infrastructure.Repositories
 
             // Assert
             result.Should().HaveCount(3);
-            result.Should().Contain(p => p.Nome == "Jo„o");
+            result.Should().Contain(p => p.Nome == "Jo√£o");
             result.Should().Contain(p => p.Nome == "Maria");
             result.Should().Contain(p => p.Nome == "Pedro");
         }
@@ -178,7 +178,7 @@ namespace RegisterAPI.Tests.Infrastructure.Repositories
             // Arrange
             var pessoa = new Pessoa
             {
-                Nome = "Jo„o",
+                Nome = "Jo√£o",
                 Cpf = "209.941.790-30",
                 DataNascimento = DateTime.Now.AddYears(-30),
                 DataCadastro = DateTime.UtcNow,

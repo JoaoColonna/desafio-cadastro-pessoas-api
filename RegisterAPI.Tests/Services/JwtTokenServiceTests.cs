@@ -1,4 +1,4 @@
-using FluentAssertions;
+Ôªøusing FluentAssertions;
 using Microsoft.Extensions.Configuration;
 using RegisterAPI.Services;
 using System.IdentityModel.Tokens.Jwt;
@@ -40,7 +40,7 @@ namespace RegisterAPI.Tests.Services
             // Assert
             token.Should().NotBeNullOrEmpty();
             
-            // Verificar se È um JWT v·lido
+            // Verificar se √© um JWT v√°lido
             var handler = new JwtSecurityTokenHandler();
             var jsonToken = handler.ReadJwtToken(token);
 
@@ -69,7 +69,7 @@ namespace RegisterAPI.Tests.Services
             // Act & Assert
             service.Invoking(x => x.GenerateToken("user", "email@test.com", 1))
                 .Should().Throw<InvalidOperationException>()
-                .WithMessage("JWT SecretKey n„o configurada");
+                .WithMessage("JWT SecretKey n√£o configurada");
         }
 
         [Fact]

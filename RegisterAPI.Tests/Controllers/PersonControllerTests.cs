@@ -1,4 +1,4 @@
-using FluentAssertions;
+Ôªøusing FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using RegisterAPI.Application.DTOs;
@@ -25,7 +25,7 @@ namespace RegisterAPI.Tests.Controllers
             // Arrange
             var dto = new PersonDto
             {
-                Nome = "Jo„o Silva",
+                Nome = "Jo√£o Silva",
                 Cpf = "209.941.790-30",
                 Email = "joao@example.com",
                 DataNascimento = DateTime.Now.AddYears(-30)
@@ -60,7 +60,7 @@ namespace RegisterAPI.Tests.Controllers
             // Arrange
             var persons = new List<PersonResponseDto>
             {
-                new() { Id = 1, Nome = "Jo„o Silva", Cpf = "209.941.790-30", DataNascimento = DateTime.Now.AddYears(-30), DataCadastro = DateTime.Now, DataAtualizacao = DateTime.Now },
+                new() { Id = 1, Nome = "Jo√£o Silva", Cpf = "209.941.790-30", DataNascimento = DateTime.Now.AddYears(-30), DataCadastro = DateTime.Now, DataAtualizacao = DateTime.Now },
                 new() { Id = 2, Nome = "Maria Santos", Cpf = "209.941.790-30", DataNascimento = DateTime.Now.AddYears(-25), DataCadastro = DateTime.Now, DataAtualizacao = DateTime.Now }
             };
 
@@ -84,7 +84,7 @@ namespace RegisterAPI.Tests.Controllers
             var person = new PersonResponseDto
             {
                 Id = id,
-                Nome = "Jo„o Silva",
+                Nome = "Jo√£o Silva",
                 Cpf = "209.941.790-30",
                 DataNascimento = DateTime.Now.AddYears(-30),
                 DataCadastro = DateTime.Now,
@@ -115,7 +115,7 @@ namespace RegisterAPI.Tests.Controllers
             // Assert
             result.Should().BeOfType<NotFoundObjectResult>();
             var notFoundResult = result as NotFoundObjectResult;
-            notFoundResult!.Value.Should().Be("Pessoa n„o encontrada.");
+            notFoundResult!.Value.Should().Be("Pessoa n√£o encontrada.");
         }
 
         [Fact]
@@ -125,7 +125,7 @@ namespace RegisterAPI.Tests.Controllers
             var id = 1;
             var dto = new PersonDto
             {
-                Nome = "Jo„o Silva Atualizado",
+                Nome = "Jo√£o Silva Atualizado",
                 Cpf = "209.941.790-30",
                 Email = "joao.updated@example.com",
                 DataNascimento = DateTime.Now.AddYears(-30)

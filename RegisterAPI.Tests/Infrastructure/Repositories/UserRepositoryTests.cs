@@ -1,4 +1,4 @@
-using FluentAssertions;
+﻿using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using RegisterAPI.Domain.Entities;
 using RegisterAPI.Infrasctructure.Database;

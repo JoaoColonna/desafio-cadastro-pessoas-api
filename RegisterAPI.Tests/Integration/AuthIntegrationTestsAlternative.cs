@@ -1,4 +1,4 @@
-/*using FluentAssertions;
+Ôªø/*using FluentAssertions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
@@ -57,7 +57,7 @@ namespace RegisterAPI.Tests.Integration
         [Fact]
         public async Task Login_WithValidCredentials_ShouldReturnOkWithToken()
         {
-            // Arrange - Primeiro registrar um usu·rio
+            // Arrange - Primeiro registrar um usu√°rio
             var registerDto = new RegisterDto
             {
                 Username = "loginuser",
@@ -104,7 +104,7 @@ namespace RegisterAPI.Tests.Integration
                     services.Remove(descriptor);
                 }
 
-                // Adiciona banco em memÛria
+                // Adiciona banco em mem√≥ria
                 services.AddDbContext<AppDbContext>(options =>
                 {
                     options.UseInMemoryDatabase($"InMemoryDbForTesting_{Guid.NewGuid()}");

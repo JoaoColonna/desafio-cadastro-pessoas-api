@@ -1,4 +1,4 @@
-/*using FluentAssertions;
+Ôªø/*using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -70,7 +70,7 @@ namespace RegisterAPI.Tests.Integration
         [Fact]
         public async Task Login_WithValidCredentials_ShouldReturnOkWithToken()
         {
-            // Arrange - Primeiro registrar um usu·rio
+            // Arrange - Primeiro registrar um usu√°rio
             var registerDto = new RegisterDto
             {
                 Username = "loginuser",
@@ -123,7 +123,7 @@ namespace RegisterAPI.Tests.Integration
         [Fact]
         public async Task Register_WithDuplicateUsername_ShouldReturnConflict()
         {
-            // Arrange - Primeiro registrar um usu·rio
+            // Arrange - Primeiro registrar um usu√°rio
             var firstUser = new RegisterDto
             {
                 Username = "duplicateuser",
@@ -154,7 +154,7 @@ namespace RegisterAPI.Tests.Integration
             var invalidRegisterDto = new RegisterDto
             {
                 Username = "", // Username vazio
-                Email = "invalid-email", // Email inv·lido
+                Email = "invalid-email", // Email inv√°lido
                 Password = "123" // Password muito curto
             };
 

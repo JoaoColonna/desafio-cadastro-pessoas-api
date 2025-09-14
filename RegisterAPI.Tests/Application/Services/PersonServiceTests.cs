@@ -1,4 +1,4 @@
-using FluentAssertions;
+ï»¿using FluentAssertions;
 using Moq;
 using RegisterAPI.Application.DTOs;
 using RegisterAPI.Application.Interfaces;
@@ -25,12 +25,12 @@ namespace RegisterAPI.Tests.Application.Services
             // Arrange
             var dto = new PersonDto
             {
-                Nome = "João Silva",
+                Nome = "JoÃ£o Silva",
                 Cpf = "209.941.790-30",
                 Email = "joao@example.com",
                 DataNascimento = DateTime.Now.AddYears(-30),
                 Sexo = "M",
-                Naturalidade = "São Paulo",
+                Naturalidade = "SÃ£o Paulo",
                 Nacionalidade = "Brasileira"
             };
 
@@ -68,7 +68,7 @@ namespace RegisterAPI.Tests.Application.Services
             // Arrange
             var dto = new PersonDto
             {
-                Nome = "João Silva",
+                Nome = "JoÃ£o Silva",
                 Cpf = "209.941.790-30",
                 Email = "joao@example.com",
                 DataNascimento = DateTime.Now.AddYears(-30)
@@ -79,7 +79,7 @@ namespace RegisterAPI.Tests.Application.Services
             // Act & Assert
             _personService.Invoking(x => x.Create(dto))
                 .Should().Throw<InvalidOperationException>()
-                .WithMessage("CPF já cadastrado.");
+                .WithMessage("CPF jÃ¡ cadastrado.");
         }
 
         [Theory]
@@ -99,7 +99,7 @@ namespace RegisterAPI.Tests.Application.Services
             // Act & Assert
             _personService.Invoking(x => x.Create(dto))
                 .Should().Throw<ArgumentException>()
-                .WithMessage("Nome é obrigatório.");
+                .WithMessage("Nome Ã© obrigatÃ³rio.");
         }
 
         [Theory]
@@ -111,7 +111,7 @@ namespace RegisterAPI.Tests.Application.Services
             // Arrange
             var dto = new PersonDto
             {
-                Nome = "João Silva",
+                Nome = "JoÃ£o Silva",
                 Cpf = cpf,
                 DataNascimento = DateTime.Now.AddYears(-30)
             };
@@ -119,7 +119,7 @@ namespace RegisterAPI.Tests.Application.Services
             // Act & Assert
             _personService.Invoking(x => x.Create(dto))
                 .Should().Throw<ArgumentException>()
-                .WithMessage("CPF é obrigatório.");
+                .WithMessage("CPF Ã© obrigatÃ³rio.");
         }
 
         [Fact]
@@ -128,7 +128,7 @@ namespace RegisterAPI.Tests.Application.Services
             // Arrange
             var dto = new PersonDto
             {
-                Nome = "João Silva",
+                Nome = "JoÃ£o Silva",
                 Cpf = "209.941.790-30",
                 DataNascimento = DateTime.Now.AddDays(1)
             };
@@ -136,7 +136,7 @@ namespace RegisterAPI.Tests.Application.Services
             // Act & Assert
             _personService.Invoking(x => x.Create(dto))
                 .Should().Throw<ArgumentException>()
-                .WithMessage("Data de nascimento não pode ser futura.");
+                .WithMessage("Data de nascimento nÃ£o pode ser futura.");
         }
 
         [Fact]
@@ -146,7 +146,7 @@ namespace RegisterAPI.Tests.Application.Services
             var id = 1;
             var dto = new PersonDto
             {
-                Nome = "João Silva Atualizado",
+                Nome = "JoÃ£o Silva Atualizado",
                 Cpf = "209.941.790-30",
                 Email = "joao.updated@example.com",
                 DataNascimento = DateTime.Now.AddYears(-30)
@@ -155,7 +155,7 @@ namespace RegisterAPI.Tests.Application.Services
             var existingPessoa = new Pessoa
             {
                 Id = id,
-                Nome = "João Silva",
+                Nome = "JoÃ£o Silva",
                 Cpf = "209.941.790-30",
                 Email = "joao@example.com",
                 DataNascimento = DateTime.Now.AddYears(-30),
@@ -195,7 +195,7 @@ namespace RegisterAPI.Tests.Application.Services
             var id = 999;
             var dto = new PersonDto
             {
-                Nome = "João Silva",
+                Nome = "JoÃ£o Silva",
                 Cpf = "209.941.790-30",
                 DataNascimento = DateTime.Now.AddYears(-30)
             };
@@ -205,7 +205,7 @@ namespace RegisterAPI.Tests.Application.Services
             // Act & Assert
             _personService.Invoking(x => x.Update(id, dto))
                 .Should().Throw<ArgumentException>()
-                .WithMessage("Pessoa não encontrada.");
+                .WithMessage("Pessoa nÃ£o encontrada.");
         }
 
         [Fact]
@@ -213,7 +213,7 @@ namespace RegisterAPI.Tests.Application.Services
         {
             // Arrange
             var id = 1;
-            var existingPessoa = new Pessoa { Id = id, Nome = "João Silva", Cpf = "209.941.790-30" };
+            var existingPessoa = new Pessoa { Id = id, Nome = "JoÃ£o Silva", Cpf = "209.941.790-30" };
 
             _mockRepository.Setup(x => x.GetById(id)).Returns(existingPessoa);
 
@@ -234,7 +234,7 @@ namespace RegisterAPI.Tests.Application.Services
             // Act & Assert
             _personService.Invoking(x => x.Delete(id))
                 .Should().Throw<ArgumentException>()
-                .WithMessage("Pessoa não encontrada.");
+                .WithMessage("Pessoa nÃ£o encontrada.");
         }
 
         [Fact]
@@ -245,7 +245,7 @@ namespace RegisterAPI.Tests.Application.Services
             var pessoa = new Pessoa
             {
                 Id = id,
-                Nome = "João Silva",
+                Nome = "JoÃ£o Silva",
                 Cpf = "209.941.790-30",
                 Email = "joao@example.com",
                 DataNascimento = DateTime.Now.AddYears(-30),
@@ -285,7 +285,7 @@ namespace RegisterAPI.Tests.Application.Services
             // Arrange
             var pessoas = new[]
             {
-                new Pessoa { Id = 1, Nome = "João Silva", Cpf = "209.941.790-30", DataNascimento = DateTime.Now.AddYears(-30), DataCadastro = DateTime.Now, DataAtualizacao = DateTime.Now },
+                new Pessoa { Id = 1, Nome = "JoÃ£o Silva", Cpf = "209.941.790-30", DataNascimento = DateTime.Now.AddYears(-30), DataCadastro = DateTime.Now, DataAtualizacao = DateTime.Now },
                 new Pessoa { Id = 2, Nome = "Maria Santos", Cpf = "209.941.790-30", DataNascimento = DateTime.Now.AddYears(-25), DataCadastro = DateTime.Now, DataAtualizacao = DateTime.Now }
             };
 
@@ -296,7 +296,7 @@ namespace RegisterAPI.Tests.Application.Services
 
             // Assert
             result.Should().HaveCount(2);
-            result.Should().Contain(p => p.Nome == "João Silva");
+            result.Should().Contain(p => p.Nome == "JoÃ£o Silva");
             result.Should().Contain(p => p.Nome == "Maria Santos");
         }
     }

@@ -1,4 +1,4 @@
-using FluentAssertions;
+ï»¿using FluentAssertions;
 using Moq;
 using RegisterAPI.Application.DTOs;
 using RegisterAPI.Application.Interfaces;
@@ -25,18 +25,18 @@ namespace RegisterAPI.Tests.Application.Services
             // Arrange
             var dto = new PersonV2Dto
             {
-                Nome = "João Silva",
+                Nome = "JoÃ£o Silva",
                 Cpf = "209.941.790-30",
                 Email = "joao@example.com",
                 DataNascimento = DateTime.Now.AddYears(-30),
                 Sexo = "M",
-                Naturalidade = "São Paulo",
+                Naturalidade = "SÃ£o Paulo",
                 Nacionalidade = "Brasileira",
                 Endereco = new EnderecoDto
                 {
                     Rua = "Rua das Flores",
                     Numero = "123",
-                    Cidade = "São Paulo",
+                    Cidade = "SÃ£o Paulo",
                     Estado = "SP",
                     Cep = "01234-567"
                 }
@@ -87,7 +87,7 @@ namespace RegisterAPI.Tests.Application.Services
             // Arrange
             var dto = new PersonV2Dto
             {
-                Nome = "João Silva",
+                Nome = "JoÃ£o Silva",
                 Cpf = "209.941.790-30",
                 Email = "joao@example.com",
                 DataNascimento = DateTime.Now.AddYears(-30),
@@ -95,7 +95,7 @@ namespace RegisterAPI.Tests.Application.Services
                 {
                     Rua = "Rua das Flores",
                     Numero = "123",
-                    Cidade = "São Paulo",
+                    Cidade = "SÃ£o Paulo",
                     Estado = "SP",
                     Cep = "01234-567"
                 }
@@ -106,7 +106,7 @@ namespace RegisterAPI.Tests.Application.Services
             // Act & Assert
             _personService.Invoking(x => x.Create(dto))
                 .Should().Throw<InvalidOperationException>()
-                .WithMessage("CPF já cadastrado.");
+                .WithMessage("CPF jÃ¡ cadastrado.");
         }
 
         [Fact]
@@ -115,14 +115,14 @@ namespace RegisterAPI.Tests.Application.Services
             // Arrange
             var dto = new PersonV2Dto
             {
-                Nome = "João Silva",
+                Nome = "JoÃ£o Silva",
                 Cpf = "209.941.790-30",
                 DataNascimento = DateTime.Now.AddYears(-30),
                 Endereco = new EnderecoDto
                 {
                     Rua = "", // Rua vazia
                     Numero = "123",
-                    Cidade = "São Paulo",
+                    Cidade = "SÃ£o Paulo",
                     Estado = "SP",
                     Cep = "01234-567"
                 }
@@ -131,7 +131,7 @@ namespace RegisterAPI.Tests.Application.Services
             // Act & Assert
             _personService.Invoking(x => x.Create(dto))
                 .Should().Throw<ArgumentException>()
-                .WithMessage("Rua é obrigatória.");
+                .WithMessage("Rua Ã© obrigatÃ³ria.");
         }
 
         [Fact]
@@ -141,7 +141,7 @@ namespace RegisterAPI.Tests.Application.Services
             var id = 1;
             var dto = new PersonV2Dto
             {
-                Nome = "João Silva Atualizado",
+                Nome = "JoÃ£o Silva Atualizado",
                 Cpf = "209.941.790-30",
                 Email = "joao.updated@example.com",
                 DataNascimento = DateTime.Now.AddYears(-30),
@@ -158,7 +158,7 @@ namespace RegisterAPI.Tests.Application.Services
             var existingPessoa = new PessoaV2
             {
                 Id = id,
-                Nome = "João Silva",
+                Nome = "JoÃ£o Silva",
                 Cpf = "209.941.790-30",
                 Email = "joao@example.com",
                 DataNascimento = DateTime.Now.AddYears(-30),
@@ -166,7 +166,7 @@ namespace RegisterAPI.Tests.Application.Services
                 {
                     Rua = "Rua das Flores",
                     Numero = "123",
-                    Cidade = "São Paulo",
+                    Cidade = "SÃ£o Paulo",
                     Estado = "SP",
                     Cep = "01234-567"
                 },
@@ -218,10 +218,10 @@ namespace RegisterAPI.Tests.Application.Services
                 new PessoaV2
                 {
                     Id = 1,
-                    Nome = "João Silva",
+                    Nome = "JoÃ£o Silva",
                     Cpf = "209.941.790-30",
                     DataNascimento = DateTime.Now.AddYears(-30),
-                    Endereco = new Endereco { Rua = "Rua A", Numero = "123", Cidade = "São Paulo", Estado = "SP", Cep = "01234-567" },
+                    Endereco = new Endereco { Rua = "Rua A", Numero = "123", Cidade = "SÃ£o Paulo", Estado = "SP", Cep = "01234-567" },
                     DataCadastro = DateTime.Now,
                     DataAtualizacao = DateTime.Now
                 },
@@ -244,7 +244,7 @@ namespace RegisterAPI.Tests.Application.Services
 
             // Assert
             result.Should().HaveCount(2);
-            result.Should().Contain(p => p.Nome == "João Silva");
+            result.Should().Contain(p => p.Nome == "JoÃ£o Silva");
             result.Should().Contain(p => p.Nome == "Maria Santos");
             result.All(p => p.Endereco != null).Should().BeTrue();
         }
