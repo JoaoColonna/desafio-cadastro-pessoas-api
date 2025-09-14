@@ -1,0 +1,6 @@
+{
+  "RegisterAPI.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\joaoc\\source\\repos\\RegisterAPI\\RegisterAPI.Application",
+  "RegisterAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\joaoc\\source\\repos\\RegisterAPI\\RegisterAPI",
+  "RegisterAPI.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\joaoc\\source\\repos\\RegisterAPI\\RegisterAPI.Domain",
+  "RegisterAPI.Infrasctructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\joaoc\\source\\repos\\RegisterAPI\\RegisterAPI.Infrasctructure"
+}

@@ -15,7 +15,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RegisterAPI.Application\RegisterAPI.Application.csproj" />
-    <ProjectReference Include="..\RegisterAPI.Domain\RegisterAPI.Domain.csproj" />
   </ItemGroup>
 
 </Project>

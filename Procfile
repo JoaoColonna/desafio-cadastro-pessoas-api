@@ -1,0 +1,1 @@
+web: cd $HOME/heroku_output && dotnet ./RegisterAPI.dll --server.urls http://+:$PORT

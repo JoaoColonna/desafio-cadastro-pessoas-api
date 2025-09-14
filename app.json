@@ -1,0 +1,6 @@
+{
+  "stack": "heroku-22",
+  "env": {
+    "ASPNETCORE_ENVIRONMENT": "Production"
+  }
+}
