@@ -1,4 +1,4 @@
-using System.Text.RegularExpressions;
+ï»¿using System.Text.RegularExpressions;
 
 namespace RegisterAPI.Application.Utils
 {
@@ -9,18 +9,18 @@ namespace RegisterAPI.Application.Utils
             if (string.IsNullOrWhiteSpace(cpf))
                 return false;
 
-            // Remove caracteres não numéricos
+            // Remove caracteres nÃ£o numÃ©ricos
             cpf = Regex.Replace(cpf, @"[^\d]", "");
 
-            // Verifica se tem 11 dígitos
+            // Verifica se tem 11 dÃ­gitos
             if (cpf.Length != 11)
                 return false;
 
-            // Verifica se todos os dígitos são iguais
+            // Verifica se todos os dÃ­gitos sÃ£o iguais
             if (cpf.All(c => c == cpf[0]))
                 return false;
 
-            // Validação do primeiro dígito verificador
+            // ValidaÃ§Ã£o do primeiro dÃ­gito verificador
             int soma = 0;
             for (int i = 0; i < 9; i++)
                 soma += int.Parse(cpf[i].ToString()) * (10 - i);
@@ -31,7 +31,7 @@ namespace RegisterAPI.Application.Utils
             if (int.Parse(cpf[9].ToString()) != digitoVerificador1)
                 return false;
 
-            // Validação do segundo dígito verificador
+            // ValidaÃ§Ã£o do segundo dÃ­gito verificador
             soma = 0;
             for (int i = 0; i < 10; i++)
                 soma += int.Parse(cpf[i].ToString()) * (11 - i);

@@ -1,4 +1,4 @@
-using RegisterAPI.Application.Interfaces;
+ï»¿using RegisterAPI.Application.Interfaces;
 using RegisterAPI.Domain.Entities;
 using RegisterAPI.Application.DTOs;
 using RegisterAPI.Application.Utils;
@@ -16,16 +16,16 @@ namespace RegisterAPI.Application.Services
 
         public PersonV2ResponseDto Create(PersonV2Dto dto)
         {
-            // Validações
+            // ValidaÃ§Ãµes
             ValidatePersonV2Dto(dto);
 
-            // Verificar se CPF já existe
+            // Verificar se CPF jÃ¡ existe
             if (_repository.ExistsByCpf(dto.Cpf))
             {
-                throw new InvalidOperationException("CPF já cadastrado.");  
+                throw new InvalidOperationException("CPF jÃ¡ cadastrado.");  
             }
 
-            // Conversão DTO -> Entidade
+            // ConversÃ£o DTO -> Entidade
             var pessoa = new PessoaV2
             {
                 Nome = dto.Nome,
@@ -47,33 +47,33 @@ namespace RegisterAPI.Application.Services
                 DataAtualizacao = DateTime.Now
             };
 
-            // Chama repositório
+            // Chama repositÃ³rio
             var createdPessoa = _repository.Create(pessoa);
 
-            // Conversão Entidade -> DTO
+            // ConversÃ£o Entidade -> DTO
             return MapToResponseDto(createdPessoa);
         }
 
         public PersonV2ResponseDto Update(int id, PersonV2Dto dto)
         {
-            // Validações
+            // ValidaÃ§Ãµes
             ValidatePersonV2Dto(dto);
 
             // Verificar se pessoa existe
             var existingPessoa = _repository.GetById(id);
             if (existingPessoa == null)
             {
-                throw new ArgumentException("Pessoa não encontrada.");
+                throw new ArgumentException("Pessoa nÃ£o encontrada.");
             }
 
-            // Verificar se CPF já existe (exceto para a própria pessoa)
+            // Verificar se CPF jÃ¡ existe (exceto para a prÃ³pria pessoa)
             var pessoaComCpf = _repository.GetAll().FirstOrDefault(p => p.Cpf == dto.Cpf);
             if (pessoaComCpf != null && pessoaComCpf.Id != id)
             {
-                throw new InvalidOperationException("CPF já cadastrado para outra pessoa.");
+                throw new InvalidOperationException("CPF jÃ¡ cadastrado para outra pessoa.");
             }
 
-            // Conversão DTO -> Entidade
+            // ConversÃ£o DTO -> Entidade
             var pessoa = new PessoaV2
             {
                 Nome = dto.Nome,
@@ -95,10 +95,10 @@ namespace RegisterAPI.Application.Services
                 DataAtualizacao = DateTime.Now
             };
 
-            // Chama repositório
+            // Chama repositÃ³rio
             var updatedPessoa = _repository.Update(id, pessoa);
 
-            // Conversão Entidade -> DTO
+            // ConversÃ£o Entidade -> DTO
             return MapToResponseDto(updatedPessoa);
         }
 
@@ -107,7 +107,7 @@ namespace RegisterAPI.Application.Services
             var existingPessoa = _repository.GetById(id);
             if (existingPessoa == null)
             {
-                throw new ArgumentException("Pessoa não encontrada.");
+                throw new ArgumentException("Pessoa nÃ£o encontrada.");
             }
 
             _repository.Delete(id);
@@ -128,41 +128,41 @@ namespace RegisterAPI.Application.Services
         private static void ValidatePersonV2Dto(PersonV2Dto dto)
         {
             if (string.IsNullOrWhiteSpace(dto.Nome))
-                throw new ArgumentException("Nome é obrigatório.");
+                throw new ArgumentException("Nome Ã© obrigatÃ³rio.");
 
             if (string.IsNullOrWhiteSpace(dto.Cpf))
-                throw new ArgumentException("CPF é obrigatório.");
+                throw new ArgumentException("CPF Ã© obrigatÃ³rio.");
 
             if (!CpfValidator.IsValid(dto.Cpf))
-                throw new ArgumentException("CPF inválido.");
+                throw new ArgumentException("CPF invÃ¡lido.");
 
             if (dto.DataNascimento == default)
-                throw new ArgumentException("Data de nascimento é obrigatória.");
+                throw new ArgumentException("Data de nascimento Ã© obrigatÃ³ria.");
 
             if (dto.DataNascimento > DateTime.Now)
-                throw new ArgumentException("Data de nascimento não pode ser futura.");
+                throw new ArgumentException("Data de nascimento nÃ£o pode ser futura.");
 
             if (!string.IsNullOrWhiteSpace(dto.Email) && !EmailValidator.IsValid(dto.Email))
-                throw new ArgumentException("Email inválido.");
+                throw new ArgumentException("Email invÃ¡lido.");
 
-            // Validações do endereço (obrigatório na V2)
+            // ValidaÃ§Ãµes do endereÃ§o (obrigatÃ³rio na V2)
             if (dto.Endereco == null)
-                throw new ArgumentException("Endereço é obrigatório.");
+                throw new ArgumentException("EndereÃ§o Ã© obrigatÃ³rio.");
 
             if (string.IsNullOrWhiteSpace(dto.Endereco.Rua))
-                throw new ArgumentException("Rua é obrigatória.");
+                throw new ArgumentException("Rua Ã© obrigatÃ³ria.");
 
             if (string.IsNullOrWhiteSpace(dto.Endereco.Numero))
-                throw new ArgumentException("Número é obrigatório.");
+                throw new ArgumentException("NÃºmero Ã© obrigatÃ³rio.");
 
             if (string.IsNullOrWhiteSpace(dto.Endereco.Cidade))
-                throw new ArgumentException("Cidade é obrigatória.");
+                throw new ArgumentException("Cidade Ã© obrigatÃ³ria.");
 
             if (string.IsNullOrWhiteSpace(dto.Endereco.Estado))
-                throw new ArgumentException("Estado é obrigatório.");
+                throw new ArgumentException("Estado Ã© obrigatÃ³rio.");
 
             if (string.IsNullOrWhiteSpace(dto.Endereco.Cep))
-                throw new ArgumentException("CEP é obrigatório.");
+                throw new ArgumentException("CEP Ã© obrigatÃ³rio.");
         }
 
         private static PersonV2ResponseDto MapToResponseDto(PessoaV2 pessoa)

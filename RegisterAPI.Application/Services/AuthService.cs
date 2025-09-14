@@ -1,4 +1,4 @@
-using RegisterAPI.Application.DTOs;
+Ôªøusing RegisterAPI.Application.DTOs;
 using RegisterAPI.Application.Interfaces;
 using RegisterAPI.Domain.Entities;
 using System.Security.Cryptography;
@@ -20,15 +20,15 @@ namespace RegisterAPI.Application.Services
             
             if (user == null || !VerifyPassword(loginDto.Password, user.PasswordHash))
             {
-                throw new UnauthorizedAccessException("Username ou password inv·lidos.");
+                throw new UnauthorizedAccessException("Username ou password inv√°lidos.");
             }
 
-            // O token ser· gerado no controller usando o serviÁo JWT
+            // O token ser√° gerado no controller usando o servi√ßo JWT
             var expiresAt = DateTime.UtcNow.AddHours(24);
 
             return new AuthResponseDto
             {
-                Token = string.Empty, // Ser· preenchido no controller
+                Token = string.Empty, // Ser√° preenchido no controller
                 Username = user.Username,
                 Email = user.Email,
                 ExpiresAt = expiresAt
@@ -37,22 +37,22 @@ namespace RegisterAPI.Application.Services
 
         public async Task<AuthResponseDto> RegisterAsync(RegisterDto registerDto)
         {
-            // Verificar se username j· existe
+            // Verificar se username j√° existe
             if (await _userRepository.ExistsByUsernameAsync(registerDto.Username))
             {
-                throw new InvalidOperationException("Username j· est· em uso.");
+                throw new InvalidOperationException("Username j√° est√° em uso.");
             }
 
-            // Verificar se email j· existe
+            // Verificar se email j√° existe
             if (await _userRepository.ExistsByEmailAsync(registerDto.Email))
             {
-                throw new InvalidOperationException("Email j· est· em uso.");
+                throw new InvalidOperationException("Email j√° est√° em uso.");
             }
 
             // Criar hash da senha
             var passwordHash = HashPassword(registerDto.Password);
 
-            // Criar usu·rio
+            // Criar usu√°rio
             var user = new User
             {
                 Username = registerDto.Username,
@@ -63,12 +63,12 @@ namespace RegisterAPI.Application.Services
 
             var createdUser = await _userRepository.CreateAsync(user);
 
-            // O token ser· gerado no controller
+            // O token ser√° gerado no controller
             var expiresAt = DateTime.UtcNow.AddHours(24);
 
             return new AuthResponseDto
             {
-                Token = string.Empty, // Ser· preenchido no controller
+                Token = string.Empty, // Ser√° preenchido no controller
                 Username = createdUser.Username,
                 Email = createdUser.Email,
                 ExpiresAt = expiresAt
@@ -77,7 +77,7 @@ namespace RegisterAPI.Application.Services
 
         public string GenerateJwtToken(string username, string email, int userId)
         {
-            // Este mÈtodo ser· implementado usando injeÁ„o de dependÍncia no controller
+            // Este m√©todo ser√° implementado usando inje√ß√£o de depend√™ncia no controller
             throw new NotImplementedException("Use IJwtTokenService para gerar tokens");
         }
 

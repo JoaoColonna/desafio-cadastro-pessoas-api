@@ -1,4 +1,4 @@
-using RegisterAPI.Application.Interfaces;
+Ôªøusing RegisterAPI.Application.Interfaces;
 using RegisterAPI.Domain.Entities;
 using RegisterAPI.Application.DTOs;
 using RegisterAPI.Application.Utils;
@@ -16,16 +16,16 @@ namespace RegisterAPI.Application.Services
 
         public PersonResponseDto Create(PersonDto dto)
         {
-            // ValidaÁıes
+            // Valida√ß√µes
             ValidatePersonDto(dto);
 
-            // Verificar se CPF j· existe
+            // Verificar se CPF j√° existe
             if (_repository.ExistsByCpf(dto.Cpf))
             {
-                throw new InvalidOperationException("CPF j· cadastrado.");
+                throw new InvalidOperationException("CPF j√° cadastrado.");
             }
 
-            // Convers„o DTO -> Entidade
+            // Convers√£o DTO -> Entidade
             var pessoa = new Pessoa
             {
                 Nome = dto.Nome,
@@ -39,33 +39,33 @@ namespace RegisterAPI.Application.Services
                 DataAtualizacao = DateTime.Now
             };
 
-            // Chama repositÛrio
+            // Chama reposit√≥rio
             var createdPessoa = _repository.Create(pessoa);
 
-            // Convers„o Entidade -> DTO
+            // Convers√£o Entidade -> DTO
             return MapToResponseDto(createdPessoa);
         }
 
         public PersonResponseDto Update(int id, PersonDto dto)
         {
-            // ValidaÁıes
+            // Valida√ß√µes
             ValidatePersonDto(dto);
 
             // Verificar se pessoa existe
             var existingPessoa = _repository.GetById(id);
             if (existingPessoa == null)
             {
-                throw new ArgumentException("Pessoa n„o encontrada.");
+                throw new ArgumentException("Pessoa n√£o encontrada.");
             }
 
-            // Verificar se CPF j· existe (exceto para a prÛpria pessoa)
+            // Verificar se CPF j√° existe (exceto para a pr√≥pria pessoa)
             var pessoaComCpf = _repository.GetAll().FirstOrDefault(p => p.Cpf == dto.Cpf);
             if (pessoaComCpf != null && pessoaComCpf.Id != id)
             {
-                throw new InvalidOperationException("CPF j· cadastrado para outra pessoa.");
+                throw new InvalidOperationException("CPF j√° cadastrado para outra pessoa.");
             }
 
-            // Convers„o DTO -> Entidade
+            // Convers√£o DTO -> Entidade
             var pessoa = new Pessoa
             {
                 Nome = dto.Nome,
@@ -79,10 +79,10 @@ namespace RegisterAPI.Application.Services
                 DataAtualizacao = DateTime.Now
             };
 
-            // Chama repositÛrio
+            // Chama reposit√≥rio
             var updatedPessoa = _repository.Update(id, pessoa);
 
-            // Convers„o Entidade -> DTO
+            // Convers√£o Entidade -> DTO
             return MapToResponseDto(updatedPessoa);
         }
 
@@ -91,7 +91,7 @@ namespace RegisterAPI.Application.Services
             var existingPessoa = _repository.GetById(id);
             if (existingPessoa == null)
             {
-                throw new ArgumentException("Pessoa n„o encontrada.");
+                throw new ArgumentException("Pessoa n√£o encontrada.");
             }
 
             _repository.Delete(id);
@@ -112,22 +112,22 @@ namespace RegisterAPI.Application.Services
         private static void ValidatePersonDto(PersonDto dto)
         {
             if (string.IsNullOrWhiteSpace(dto.Nome))
-                throw new ArgumentException("Nome È obrigatÛrio.");
+                throw new ArgumentException("Nome √© obrigat√≥rio.");
 
             if (string.IsNullOrWhiteSpace(dto.Cpf))
-                throw new ArgumentException("CPF È obrigatÛrio.");
+                throw new ArgumentException("CPF √© obrigat√≥rio.");
 
             if (!CpfValidator.IsValid(dto.Cpf))
-                throw new ArgumentException("CPF inv·lido.");
+                throw new ArgumentException("CPF inv√°lido.");
 
             if (dto.DataNascimento == default)
-                throw new ArgumentException("Data de nascimento È obrigatÛria.");
+                throw new ArgumentException("Data de nascimento √© obrigat√≥ria.");
 
             if (dto.DataNascimento > DateTime.Now)
-                throw new ArgumentException("Data de nascimento n„o pode ser futura.");
+                throw new ArgumentException("Data de nascimento n√£o pode ser futura.");
 
             if (!string.IsNullOrWhiteSpace(dto.Email) && !EmailValidator.IsValid(dto.Email))
-                throw new ArgumentException("Email inv·lido.");
+                throw new ArgumentException("Email inv√°lido.");
         }
 
         private static PersonResponseDto MapToResponseDto(Pessoa pessoa)
