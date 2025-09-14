@@ -1,0 +1,59 @@
+Summary
+  Generated on: 09/14/2025 - 01:25:02
+  Parser: OpenCover
+  Assemblies: 4
+  Classes: 32
+  Files: 23
+  Line coverage: 36.5%
+  Covered lines: 481
+  Uncovered lines: 835
+  Coverable lines: 1316
+  Total lines: 2147
+  Branch coverage: 63% (87 of 138)
+  Covered branches: 87
+  Total branches: 138
+  Method coverage: 77.3% (113 of 146)
+  Full method coverage: 72.6% (106 of 146)
+  Covered methods: 113
+  Fully covered methods: 106
+  Total methods: 146
+
+RegisterAPI                                                          32.6%
+  Program                                                               0%
+  RegisterAPI.Controllers.AuthController                              100%
+  RegisterAPI.Controllers.PersonController                            100%
+  RegisterAPI.Controllers.PersonV2                                      0%
+  RegisterAPI.Middleware.GlobalExceptionHandlerMiddleware               0%
+  RegisterAPI.Services.JwtTokenService                                100%
+
+RegisterAPI.Application                                              88.7%
+  RegisterAPI.Application.DTOs.AuthResponseDto                        100%
+  RegisterAPI.Application.DTOs.EnderecoDto                            100%
+  RegisterAPI.Application.DTOs.LoginDto                               100%
+  RegisterAPI.Application.DTOs.PersonDto                              100%
+  RegisterAPI.Application.DTOs.PersonResponseDto                      100%
+  RegisterAPI.Application.DTOs.PersonV2Dto                            100%
+  RegisterAPI.Application.DTOs.PersonV2ResponseDto                    100%
+  RegisterAPI.Application.DTOs.RegisterDto                            100%
+  RegisterAPI.Application.DTOs.UserResponseDto                          0%
+  RegisterAPI.Application.Services.AuthService                        100%
+  RegisterAPI.Application.Services.PersonService                     94.7%
+  RegisterAPI.Application.Services.PersonServiceV2                   82.1%
+  RegisterAPI.Application.Utils.CpfValidator                           80%
+  RegisterAPI.Application.Utils.EmailValidator                         75%
+
+RegisterAPI.Domain                                                    100%
+  RegisterAPI.Domain.Entities.Endereco                                100%
+  RegisterAPI.Domain.Entities.Pessoa                                  100%
+  RegisterAPI.Domain.Entities.PessoaV2                                100%
+  RegisterAPI.Domain.Entities.User                                    100%
+
+RegisterAPI.Infrasctructure                                          14.8%
+  RegisterAPI.Infrasctructure.Database.AppDbContext                   100%
+  RegisterAPI.Infrasctructure.Database.DatabaseInitializer              0%
+  RegisterAPI.Infrasctructure.Migrations.AppDbContextModelSnapshot      0%
+  RegisterAPI.Infrasctructure.Migrations.createUserTable                0%
+  RegisterAPI.Infrasctructure.Migrations.InitialCreate                  0%
+  RegisterAPI.Infrasctructure.Repositories.PersonRepository          96.5%
+  RegisterAPI.Infrasctructure.Repositories.PersonRepositoryV2           0%
+  RegisterAPI.Infrasctructure.Repositories.UserRepository             100%
