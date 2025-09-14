@@ -69,9 +69,14 @@ jobs:
     - name: Install Heroku CLI
       run: curl https://cli-assets.heroku.com/install.sh | sh
 
+    - name: Add Heroku git remote
+      run: heroku git:remote -a register-people-api
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+
     - name: Deploy to Heroku
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       run: |
-        heroku git:remote -a register-people-api
-        git push https://heroku:$HEROKU_API_KEY@git.heroku.com/register-people-api.git main:main
+        git remote set-url heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/register-people-api.git
+        git push heroku main:main
