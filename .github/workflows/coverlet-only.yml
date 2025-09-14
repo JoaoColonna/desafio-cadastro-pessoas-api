@@ -1,4 +1,4 @@
-name: Deploy to Heroku with Coverlet
+﻿name: Deploy to Heroku with Coverlet
 
 on:
   push:
@@ -48,7 +48,7 @@ jobs:
       run: cat TestResults/CoverageReport/Summary.txt
         
     - name: Upload coverage reports
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: coverage-report
         path: TestResults/CoverageReport/
