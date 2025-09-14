@@ -16,9 +16,19 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
-// Configurar JWT
+// Configurar JWT - usar variáveis de ambiente APENAS em produção
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
-var secretKey = jwtSettings["SecretKey"] ?? throw new InvalidOperationException("JWT SecretKey não configurada");
+var secretKey = builder.Environment.IsProduction() 
+    ? Environment.GetEnvironmentVariable("JWT_SECRET_KEY") ?? throw new InvalidOperationException("JWT SecretKey não configurada em produção")
+    : jwtSettings["SecretKey"] ?? throw new InvalidOperationException("JWT SecretKey não configurada");
+
+var issuer = builder.Environment.IsProduction()
+    ? Environment.GetEnvironmentVariable("JWT_ISSUER") ?? "RegisterAPI"
+    : jwtSettings["Issuer"] ?? "RegisterAPI";
+
+var audience = builder.Environment.IsProduction()
+    ? Environment.GetEnvironmentVariable("JWT_AUDIENCE") ?? "RegisterAPI"
+    : jwtSettings["Audience"] ?? "RegisterAPI";
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -29,8 +39,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            ValidIssuer = jwtSettings["Issuer"],
-            ValidAudience = jwtSettings["Audience"],
+            ValidIssuer = issuer,
+            ValidAudience = audience,
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey)),
             ClockSkew = TimeSpan.Zero
         };
@@ -69,9 +79,10 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-// Configurar Entity Framework e PostgreSQL
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
-    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+// Configurar connection string - usar variável de ambiente DATABASE_URL APENAS em produção
+var connectionString = builder.Environment.IsProduction()
+    ? Environment.GetEnvironmentVariable("DATABASE_URL") ?? throw new InvalidOperationException("DATABASE_URL não configurada em produção")
+    : builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(connectionString));
