@@ -76,5 +76,8 @@ jobs:
         git remote remove heroku || true
         git remote add heroku https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/register-people-api.git
 
+    - name: Unshallow git repository
+      run: git fetch --prune --unshallow
+
     - name: Deploy to Heroku
       run: git push heroku main:main
