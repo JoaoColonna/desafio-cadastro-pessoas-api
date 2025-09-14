@@ -1,4 +1,4 @@
-using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -18,7 +18,7 @@ namespace RegisterAPI.Services
         public string GenerateToken(string username, string email, int userId)
         {
             var jwtSettings = _configuration.GetSection("JwtSettings");
-            var secretKey = jwtSettings["SecretKey"] ?? throw new InvalidOperationException("JWT SecretKey n�o configurada");
+            var secretKey = jwtSettings["SecretKey"] ?? throw new InvalidOperationException("JWT SecretKey não configurada");
             var issuer = jwtSettings["Issuer"] ?? "RegisterAPI";
             var audience = jwtSettings["Audience"] ?? "RegisterAPI";
 

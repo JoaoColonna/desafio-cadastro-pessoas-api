@@ -1,4 +1,4 @@
-using RegisterAPI.Application.Interfaces;
+ï»¿using RegisterAPI.Application.Interfaces;
 using RegisterAPI.Application.Services;
 using RegisterAPI.Infrasctructure.Repositories;
 using RegisterAPI.Infrasctructure.Database;
@@ -18,7 +18,7 @@ builder.Services.AddOpenApi();
 
 // Configurar JWT
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
-var secretKey = jwtSettings["SecretKey"] ?? throw new InvalidOperationException("JWT SecretKey não configurada");
+var secretKey = jwtSettings["SecretKey"] ?? throw new InvalidOperationException("JWT SecretKey nÃ£o configurada");
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -38,12 +38,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAuthorization();
 
-// Adicionar Swagger UI com configuração JWT
+// Adicionar Swagger UI com configuraÃ§Ã£o JWT
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "RegisterAPI", Version = "v1" });
     
-    // Configurar autenticação JWT no Swagger
+    // Configurar autenticaÃ§Ã£o JWT no Swagger
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Description = "JWT Authorization header usando o esquema Bearer. Exemplo: \"Authorization: Bearer {token}\"",
@@ -76,7 +76,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(connectionString));
 
-// Registrar serviços
+// Registrar serviÃ§os
 builder.Services.AddScoped<IPersonService, PersonService>();
 builder.Services.AddScoped<IPersonServiceV2, PersonServiceV2>();
 builder.Services.AddScoped<IPersonRepository, PersonRepository>();
