@@ -213,7 +213,7 @@ var assemblies = [
   {
     "name": "RegisterAPI",
     "classes": [
-      { "name": "Program", "rp": "RegisterAPI_Program.html", "cl": 0, "ucl": 90, "cal": 90, "tl": 135, "cb": 0, "tb": 26, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "Program", "rp": "RegisterAPI_Program.html", "cl": 0, "ucl": 100, "cal": 100, "tl": 166, "cb": 0, "tb": 34, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "RegisterAPI.Controllers.AuthController", "rp": "RegisterAPI_AuthController.html", "cl": 22, "ucl": 0, "cal": 22, "tl": 76, "cb": 8, "tb": 8, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "RegisterAPI.Controllers.PersonController", "rp": "RegisterAPI_PersonController.html", "cl": 14, "ucl": 0, "cal": 14, "tl": 107, "cb": 2, "tb": 2, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "RegisterAPI.Controllers.PersonV2", "rp": "RegisterAPI_PersonV2.html", "cl": 0, "ucl": 14, "cal": 14, "tl": 107, "cb": 0, "tb": 2, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
@@ -273,8 +273,8 @@ var riskHotspots = [
   {
     "assembly": "RegisterAPI", "class": "Program", "reportPath": "RegisterAPI_Program.html", "methodName": "<Main>$()", "methodShortName": "<Main>$()", "fileIndex": 0, "line": 13,
     "metrics": [
-      { "value": 26, "exceeded": true },
-      { "value": 26, "exceeded": false },
+      { "value": 34, "exceeded": true },
+      { "value": 34, "exceeded": false },
     ]},
   {
     "assembly": "RegisterAPI.Application", "class": "RegisterAPI.Application.Services.PersonServiceV2", "reportPath": "RegisterAPI.Application_PersonServiceV2.html", "methodName": "System.Void RegisterAPI.Application.Services.PersonServiceV2::ValidatePersonV2Dto(RegisterAPI.Application.DTOs.PersonV2Dto)", "methodShortName": "ValidatePersonV2Dto(...)", "fileIndex": 0, "line": 130,
