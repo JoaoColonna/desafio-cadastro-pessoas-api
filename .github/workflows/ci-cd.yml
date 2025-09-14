@@ -71,6 +71,9 @@ jobs:
       run: |
         curl https://cli-assets.heroku.com/install.sh | sh
 
+    - name: Add Heroku remote
+      run: heroku git:remote -a register-people-api
+
     - name: Deploy to Heroku
       uses: akhileshns/heroku-deploy@v3.14.15
       with:
