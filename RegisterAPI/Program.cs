@@ -12,6 +12,13 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Configurar porta para Heroku
+if (builder.Environment.IsProduction())
+{
+    var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+    builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
+}
+
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
@@ -79,10 +86,34 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-// Configurar connection string - usar variável de ambiente DATABASE_URL APENAS em produção
-var connectionString = builder.Environment.IsProduction()
-    ? Environment.GetEnvironmentVariable("DATABASE_URL") ?? throw new InvalidOperationException("DATABASE_URL não configurada em produção")
-    : builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+// Configurar connection string
+string connectionString;
+
+if (builder.Environment.IsProduction())
+{
+    var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
+    if (string.IsNullOrWhiteSpace(databaseUrl))
+    {
+        throw new InvalidOperationException("DATABASE_URL não configurada em produção");
+    }
+
+    // Converter URI do PostgreSQL para connection string do .NET
+    if (databaseUrl.StartsWith("postgresql://") || databaseUrl.StartsWith("postgres://"))
+    {
+        var uri = new Uri(databaseUrl);
+        connectionString = $"Host={uri.Host};Port={uri.Port};Database={uri.AbsolutePath.Trim('/')};Username={uri.UserInfo.Split(':')[0]};Password={uri.UserInfo.Split(':')[1]};SSL Mode=Require;Trust Server Certificate=true";
+    }
+    else
+    {
+        // Assumir que já está no formato correto
+        connectionString = databaseUrl;
+    }
+}
+else
+{
+    connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
+        ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+}
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(connectionString));
