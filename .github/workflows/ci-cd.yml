@@ -66,6 +66,10 @@ jobs:
         publish_dir: ./docs/coverage
         destination_dir: coverage
 
+    - name: Install Heroku CLI
+      run: |
+        curl https://cli-assets.heroku.com/install.sh | sh
+
     - name: Deploy to Heroku
       uses: akhileshns/heroku-deploy@v3.12.12
       with:
