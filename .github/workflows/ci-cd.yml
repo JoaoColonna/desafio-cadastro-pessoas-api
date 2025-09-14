@@ -67,17 +67,18 @@ jobs:
         publish_dir: ./docs/coverage
         destination_dir: coverage
 
-    # --- DEPLOY HEROKU ---
+    # --- DEPLOY HEROKU VIA DOCKER ---
     - name: Install Heroku CLI
       run: curl https://cli-assets.heroku.com/install.sh | sh
 
-    - name: Heroku login
-      run: |
-        git remote remove heroku || true
-        git remote add heroku https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/register-people-api.git
+    - name: Login Heroku Container Registry
+      run: heroku container:login
 
-    - name: Unshallow git repository
-      run: git fetch --prune --unshallow
+    - name: Build Docker image
+      run: docker build -t register-people-api .
 
-    - name: Deploy to Heroku
-      run: git push heroku main:main
+    - name: Push Docker image to Heroku
+      run: heroku container:push web -a register-people-api
+
+    - name: Release Docker image on Heroku
+      run: heroku container:release web -a register-people-api
