@@ -1,5 +1,7 @@
 ﻿using FluentAssertions;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Hosting;
+using Moq;
 using RegisterAPI.Services;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -11,6 +13,7 @@ namespace RegisterAPI.Tests.Services
     {
         private readonly JwtTokenService _jwtTokenService;
         private readonly IConfiguration _configuration;
+        private readonly Mock<IWebHostEnvironment> _mockEnvironment;
 
         public JwtTokenServiceTests()
         {
@@ -23,7 +26,11 @@ namespace RegisterAPI.Tests.Services
                 });
 
             _configuration = configurationBuilder.Build();
-            _jwtTokenService = new JwtTokenService(_configuration);
+            
+            _mockEnvironment = new Mock<IWebHostEnvironment>();
+            _mockEnvironment.Setup(x => x.EnvironmentName).Returns("Development"); // Simular desenvolvimento
+            
+            _jwtTokenService = new JwtTokenService(_configuration, _mockEnvironment.Object);
         }
 
         [Fact]
@@ -64,7 +71,10 @@ namespace RegisterAPI.Tests.Services
                 })
                 .Build();
 
-            var service = new JwtTokenService(configWithoutSecretKey);
+            var mockEnv = new Mock<IWebHostEnvironment>();
+            mockEnv.Setup(x => x.EnvironmentName).Returns("Development");
+            
+            var service = new JwtTokenService(configWithoutSecretKey, mockEnv.Object);
 
             // Act & Assert
             service.Invoking(x => x.GenerateToken("user", "email@test.com", 1))
