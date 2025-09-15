@@ -213,12 +213,14 @@ var assemblies = [
   {
     "name": "RegisterAPI",
     "classes": [
-      { "name": "Program", "rp": "RegisterAPI_Program.html", "cl": 0, "ucl": 104, "cal": 104, "tl": 171, "cb": 0, "tb": 34, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "Program", "rp": "RegisterAPI_Program.html", "cl": 0, "ucl": 12, "cal": 12, "tl": 25, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "RegisterAPI.Controllers.AuthController", "rp": "RegisterAPI_AuthController.html", "cl": 22, "ucl": 0, "cal": 22, "tl": 76, "cb": 8, "tb": 8, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "RegisterAPI.Controllers.PersonController", "rp": "RegisterAPI_PersonController.html", "cl": 14, "ucl": 0, "cal": 14, "tl": 107, "cb": 2, "tb": 2, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "RegisterAPI.Controllers.PersonV2", "rp": "RegisterAPI_PersonV2.html", "cl": 0, "ucl": 14, "cal": 14, "tl": 107, "cb": 0, "tb": 2, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "RegisterAPI.Extensions.ServiceCollectionExtensions", "rp": "RegisterAPI_ServiceCollectionExtensions.html", "cl": 0, "ucl": 114, "cal": 114, "tl": 181, "cb": 0, "tb": 30, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "RegisterAPI.Extensions.WebApplicationExtensions", "rp": "RegisterAPI_WebApplicationExtensions.html", "cl": 0, "ucl": 29, "cal": 29, "tl": 69, "cb": 0, "tb": 6, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "RegisterAPI.Middleware.GlobalExceptionHandlerMiddleware", "rp": "RegisterAPI_GlobalExceptionHandlerMiddleware.html", "cl": 0, "ucl": 31, "cal": 31, "tl": 58, "cb": 0, "tb": 8, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "RegisterAPI.Services.JwtTokenService", "rp": "RegisterAPI_JwtTokenService.html", "cl": 25, "ucl": 0, "cal": 25, "tl": 48, "cb": 4, "tb": 6, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "RegisterAPI.Services.JwtTokenService", "rp": "RegisterAPI_JwtTokenService.html", "cl": 32, "ucl": 0, "cal": 32, "tl": 60, "cb": 10, "tb": 18, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
     ]},
   {
     "name": "RegisterAPI.Application",
@@ -271,16 +273,22 @@ var riskHotspotMetrics = [
 
 var riskHotspots = [
   {
-    "assembly": "RegisterAPI", "class": "Program", "reportPath": "RegisterAPI_Program.html", "methodName": "<Main>$()", "methodShortName": "<Main>$()", "fileIndex": 0, "line": 13,
-    "metrics": [
-      { "value": 34, "exceeded": true },
-      { "value": 34, "exceeded": false },
-    ]},
-  {
     "assembly": "RegisterAPI.Application", "class": "RegisterAPI.Application.Services.PersonServiceV2", "reportPath": "RegisterAPI.Application_PersonServiceV2.html", "methodName": "System.Void RegisterAPI.Application.Services.PersonServiceV2::ValidatePersonV2Dto(RegisterAPI.Application.DTOs.PersonV2Dto)", "methodShortName": "ValidatePersonV2Dto(...)", "fileIndex": 0, "line": 130,
     "metrics": [
       { "value": 26, "exceeded": true },
       { "value": 26, "exceeded": false },
+    ]},
+  {
+    "assembly": "RegisterAPI", "class": "RegisterAPI.Extensions.ServiceCollectionExtensions", "reportPath": "RegisterAPI_ServiceCollectionExtensions.html", "methodName": "Microsoft.Extensions.DependencyInjection.IServiceCollection RegisterAPI.Extensions.ServiceCollectionExtensions::AddCustomAuthentication(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)", "methodShortName": "AddCustomAuthentication(...)", "fileIndex": 0, "line": 38,
+    "metrics": [
+      { "value": 18, "exceeded": true },
+      { "value": 18, "exceeded": false },
+    ]},
+  {
+    "assembly": "RegisterAPI", "class": "RegisterAPI.Services.JwtTokenService", "reportPath": "RegisterAPI_JwtTokenService.html", "methodName": "System.String RegisterAPI.Services.JwtTokenService::GenerateToken(System.String,System.String,System.Int32)", "methodShortName": "GenerateToken(...)", "fileIndex": 0, "line": 22,
+    "metrics": [
+      { "value": 18, "exceeded": true },
+      { "value": 18, "exceeded": false },
     ]},
   {
     "assembly": "RegisterAPI.Application", "class": "RegisterAPI.Application.Utils.CpfValidator", "reportPath": "RegisterAPI.Application_CpfValidator.html", "methodName": "System.Boolean RegisterAPI.Application.Utils.CpfValidator::IsValid(System.String)", "methodShortName": "IsValid(...)", "fileIndex": 0, "line": 9,

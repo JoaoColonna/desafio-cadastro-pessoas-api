@@ -1,28 +1,30 @@
 Summary
-  Generated on: 09/14/2025 - 23:37:00
+  Generated on: 09/15/2025 - 01:03:39
   Parser: OpenCover
   Assemblies: 4
-  Classes: 32
-  Files: 23
-  Line coverage: 35.9%
-  Covered lines: 481
-  Uncovered lines: 858
-  Coverable lines: 1339
-  Total lines: 2194
-  Branch coverage: 52.4% (87 of 166)
-  Covered branches: 87
-  Total branches: 166
-  Method coverage: 77.3% (113 of 146)
-  Full method coverage: 72.6% (106 of 146)
+  Classes: 34
+  Files: 25
+  Line coverage: 34.9%
+  Covered lines: 488
+  Uncovered lines: 909
+  Coverable lines: 1397
+  Total lines: 2310
+  Branch coverage: 51.6% (93 of 180)
+  Covered branches: 93
+  Total branches: 180
+  Method coverage: 72.9% (113 of 155)
+  Full method coverage: 68.3% (106 of 155)
   Covered methods: 113
   Fully covered methods: 106
-  Total methods: 146
+  Total methods: 155
 
-RegisterAPI                                                            29%
+RegisterAPI                                                          25.3%
   Program                                                               0%
   RegisterAPI.Controllers.AuthController                              100%
   RegisterAPI.Controllers.PersonController                            100%
   RegisterAPI.Controllers.PersonV2                                      0%
+  RegisterAPI.Extensions.ServiceCollectionExtensions                    0%
+  RegisterAPI.Extensions.WebApplicationExtensions                       0%
   RegisterAPI.Middleware.GlobalExceptionHandlerMiddleware               0%
   RegisterAPI.Services.JwtTokenService                                100%
 
